@@ -11,6 +11,14 @@ class UserRepository {
     return user;
   }
 
+  async findById(id) {
+    const user = await this.collection.findOne({ _id: id });
+    if (!user) {
+      throw new Error("User not found");
+    }
+    return user;
+  }
+
   async findAll() {
     return await this.collection.find({}).toArray();
   }
